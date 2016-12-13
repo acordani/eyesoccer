@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="panel panel-default mt50">
+    <div class="panel-heading">
+      Create your training types :
+    </div>
+    <div class="panel-body">
+      <div class="container">
+        <%= form_for @trainingtype do |f| %>
+
+          <div class="row">
+            <div class="col-md-4 select">
+              <div class="form-group">
+                <label>Catégorie</label>
+                <%= f.select :category, [["U6-U7-U8","U6-U7-U8"], ["U9","U9"], ["U10-U11","U10-U11"], ["U12-U13","U12-U13"], ["U14-U15","U14-U15"], ["U16-U17","U16-U17"], ["U18-U19","U18-U19"], ["Senior","Senior"], ["Vétérant","Veterant"]], id: "", prompt: "Select...", class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4 select">
+              <div class="form-group">
+                <label>Sous Catégorie</label>
+                
+                <%= f.select :subcategory, [["A","A"], ["B","B"], ["C","C"]], id: "", prompt: "Select...", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+            <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="actions">
+              <%= f.submit "Save", class: "btn btn-primary w100 mt50" %>
+            </div>
+          </div>
+        </div>
+          
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
