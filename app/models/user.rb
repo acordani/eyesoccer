@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
 
 
   has_many :trainingtypes, dependent: :destroy
+  has_many :events, dependent: :destroy
 
 end
