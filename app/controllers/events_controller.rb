@@ -1,10 +1,16 @@
 class EventsController < ApplicationController
+	before_action :authenticate_user!
 	def new
+		@trainingtype = Trainingtype.new
 		@event = Event.new
+
 	end
 
 	def create
-		@event = Event.new(event_params)
+
+		@event = current_user.events.new(event_params)
+		@trainingtype = Trainingtype.find(params[:trainingtype_id])
+		@event.trainingtype_id = @trainingtype.id
 		if @event.save
 			redirect_to root_path
 		else
