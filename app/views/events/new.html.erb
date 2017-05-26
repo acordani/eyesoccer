@@ -1,28 +1,32 @@
 <h1>EVENEMENTS</h1>
 <div class="container">
-  <div class="row centered">
-    <div class="col-xs-12 col-md-6 col-md-offset-3 mb-100">
-    <%= simple_form_for(@event, url: trainingtype_events_path, method: :post) do |f| %>
-      <%= f.input :starts_at, input_html: { id: "datepicker" } %>
-      <%= f.input :ends_at, input_html: { id: "datepicker" } %>
-
-      <div class="row">
-        <div class="col-md-4 select">
-          <div class="form-group">
-            <label>Type</label>
-              <%= f.input :type, collection: [["Entrainement"], ["Match"], ["Tournoi"]] %>
-              </div>
-            </div>
-
-      <%= f.button :submit, class: "btn btn-primary" %>
+  <%= form_for(@event, url: trainingtype_events_path, method: :post) do |f| %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3 mb-100">
+      
+        <%= f.text_field :starts_at %>
+        <%= f.text_field :ends_at, input_html: { class: "datepicker" } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 select">
+        <div class="form-group">
+          
+            <%= f.select :type, Event::TYPES %>
+        </div>
+      </div>
+    </div>
+      <%= f.submit %>
     <% end %>
-
-  <script type="text/javascript">
-  $(document).ready(function(){
-    $('.datepicker').datepicker();
-  });
-</script>
    </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#event_starts_at').datepicker({
+      dateFormat: 'd-M-y'
+    });
+  });
+</script>
 

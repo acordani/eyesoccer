@@ -1,27 +1,50 @@
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap-sprockets
-//= require bootstrap-datepicker
+//= require jquery_ujs
+//= require jquery-ui/widgets/datepicker
 //= require_tree .
 
-
-(document).ready(function() {
-  // navbar transition jQuery script
-
-  $('.datepicker').datepicker({ format: "dd/mm/yyyy" });
-
-  $(window).scroll(function(e){
-    if ($(this).scrollTop() > 0) {
-      $(".navbar").css({
-        "background": "rgba(0, 0, 0, 0.7)",
-        "box-shadow": "0 0 2px black"
-      });
-    }
-    else {
-      $(".navbar").css({
-        "background": "transparent",
-        "box-shadow": "0 0 0px transparent"
-      });
-    }
-  });
+// datepicker homepage
+$('#starts_at').datepicker({
+	dateFormat: "dd-mm-yy"
 });
+	
+$('#ends_at').datepicker({
+	dateFormat: "dd-mm-yy"
+});
+
+
+// datepicker event
+$('#event_starts_at').datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+$('#event_ends_at').datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+
+
+
+
+$('input.starts_at').datepicker();
+
+$("#starts_at").datepicker({
+			dateFormat: 'd-M-y',
+			minDate:0,
+			maxDate: '3m',
+			onSelect: function(selected) {
+				$('ends_at').datepicker("option", "minDate", selected);
+				$('ends_at').attr('disabled', false);
+
+			}
+		})
+
+		$("#ends_at").datepicker({
+			dateFormat: 'd-M-y',
+			minDate:0,
+			maxDate: '3m',
+			onSelect: function(selected) {
+				$('starts_at').datepicker("option", "maxDate", selected);
+				
+			}
+		})
+
